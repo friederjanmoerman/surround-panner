@@ -1,0 +1,20 @@
+{
+  "name": "surround-panner",
+  "version": "1.0.0",
+  "description": "surround panner UI",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx parcel index.html"
+  },
+  "dependencies": {
+    "lit": "^3.0.0"
+  },
+  "devDependencies": {
+    "parcel": "^2.10.0",
+    "typescript": "^4.2.0-beta"
+  },
+  "keywords": [
+    "typescript",
+    "javascript"
+  ]
+}
