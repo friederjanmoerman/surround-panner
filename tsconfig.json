@@ -9,7 +9,8 @@
     "rootDir": "src",
     "outDir": "lib",
     "moduleResolution": "node",
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "jsxImportSource": "preact"
   },
   "include": ["src/**/*.ts"],
   "exclude": []

@@ -9,8 +9,9 @@ class SurroundPanner extends LitElement {
     :host {
       display: block;
       height: 100vh;
-      margin: 0;
+      margin: -8px;
       padding: 0;
+      background: #11131a;
     }
 
     .wrapper {
@@ -20,21 +21,22 @@ class SurroundPanner extends LitElement {
       align-items: center;
       justify-content: center;
       flex-direction: column;
+      position: relative;
     }
-    
+
     .panner {
       width: 400px;
       height: 400px;
-      border: 1px solid #ccc;
       display: flex;
       justify-content: center;
       align-items: center;
+      background: #203B45;
     }
 
     .panner__outer-bounds {
       width: 300px;
       height: 300px;
-      border: 1px solid black;
+      border: 1px solid #43a1a3;
       border-radius: 50%;
       position: relative;
     }
@@ -44,10 +46,14 @@ class SurroundPanner extends LitElement {
       height: 14px;
       margin-top: -7px;
       margin-left: -7px;
-      background: blue;
+      background: #1fdeb9;
       border-radius: 50%;
       position: absolute;
       cursor: pointer;
+    }
+
+    .panner__cursor:hover {
+      box-shadow: 4px 4px 4px 4px #1fdeb9;
     }
 
     .values {
@@ -62,6 +68,10 @@ class SurroundPanner extends LitElement {
   render() {
     return html`
       <div class="wrapper">
+        <div class="values">
+                X: ${this.pointX.toFixed(2)}<br>
+                Y: ${this.pointY.toFixed(2)}
+        </div>
         <div class="panner">
           <div class="panner__outer-bounds">
             <div
@@ -69,10 +79,6 @@ class SurroundPanner extends LitElement {
               style="top: ${this.pointY * 150}px; left: ${this.pointX * 150}px"
               @mousedown="${this.handleMouseDown}"
             ></div>
-            <div class="values">
-              X: ${this.pointX.toFixed(2)}<br>
-              Y: ${this.pointY.toFixed(2)}
-            </div>
           </div>
         </div>
       </div>
