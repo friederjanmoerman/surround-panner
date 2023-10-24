@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit';
-import { property } from 'lit/decorators.js';
+import { property } from 'lit/decorators';
 
 class SurroundPanner extends LitElement {
   @property({ type: Number }) pointX = 0.5;
@@ -11,7 +11,7 @@ class SurroundPanner extends LitElement {
       height: 100vh;
       margin: -8px;
       padding: 0;
-      background: #11131a;
+      background: #11131a; 
     }
 
     .wrapper {
@@ -50,10 +50,9 @@ class SurroundPanner extends LitElement {
       border-radius: 50%;
       position: absolute;
       cursor: pointer;
-    }
-
-    .panner__cursor:hover {
-      box-shadow: 4px 4px 4px 4px #1fdeb9;
+      :hover, :focus, :active {
+        box-shadow: 4px 4px 4px 4px #1fdeb9;
+      }
     }
 
     .values {
@@ -61,6 +60,7 @@ class SurroundPanner extends LitElement {
       top: 10px;
       left: 10px;
       font-size: 16px;
+      color: red;
     }
     
   `

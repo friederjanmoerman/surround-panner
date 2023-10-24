@@ -4,7 +4,7 @@
   "description": "surround panner UI",
   "main": "index.js",
   "scripts": {
-    "start": "parcel serve index.html"
+    "start": "parcel index.html"
   },
   "dependencies": {
     "lit": "^3.0.0",
