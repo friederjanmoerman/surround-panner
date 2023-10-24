@@ -4,7 +4,7 @@
   "description": "surround panner UI",
   "main": "index.js",
   "scripts": {
-    "start": "npx parcel index.html"
+    "start": "npx parcel watch index.html"
   },
   "dependencies": {
     "lit": "^3.0.0"
