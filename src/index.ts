@@ -50,9 +50,21 @@ class SurroundPanner extends LitElement {
       border-radius: 50%;
       position: absolute;
       cursor: pointer;
-      :hover, :focus, :active {
-        box-shadow: 4px 4px 4px 4px #1fdeb9;
-      }
+    }
+
+    .panner__cursor::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      border-radius: 50%;
+      transition: opacity 0.1s ease-in-out;
+      box-shadow: 0px 0px 10px 0px #1fdeb9;
+    }
+    
+    .panner__cursor:hover::after {
+      opacity: 1;
     }
 
     .values {
@@ -60,7 +72,7 @@ class SurroundPanner extends LitElement {
       top: 10px;
       left: 10px;
       font-size: 16px;
-      color: red;
+      color: white;
     }
     
   `
@@ -76,7 +88,7 @@ class SurroundPanner extends LitElement {
           <div class="panner__outer-bounds">
             <div
               class="panner__cursor"
-              style="top: ${this.pointY * 150}px; left: ${this.pointX * 150}px"
+              style="top: ${this.pointY * 300}px; left: ${this.pointX * 300}px"
               @mousedown="${this.handleMouseDown}"
             ></div>
           </div>
@@ -86,23 +98,23 @@ class SurroundPanner extends LitElement {
   }
 
   handleMouseDown(e: MouseEvent) {
-    const offsetX = e.clientX - this.pointX * 150;
-    const offsetY = e.clientY - this.pointY * 150;
+    const offsetX = e.clientX - this.pointX * 300;
+    const offsetY = e.clientY - this.pointY * 300;
     const pannerPoint = this.shadowRoot?.querySelector('.panner-point') as HTMLElement;
 
     const handleMouseMove = (e: MouseEvent) => {
-      const x = (e.clientX - offsetX) / 150;
-      const y = (e.clientY - offsetY) / 150;
+      const x = (e.clientX - offsetX) / 300;
+      const y = (e.clientY - offsetY) / 300;
 
-      const centerX = 0;
-      const centerY = 0;
+      const centerX = 0.5;
+      const centerY = 0.5;
       const distance = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2);
 
       if (distance <= 0.5) {
         this.pointX = x;
         this.pointY = y;
-        pannerPoint.style.left = x * 150 + 'px';
-        pannerPoint.style.top = y * 150 + 'px';
+        pannerPoint.style.left = x * 300 + 'px';
+        pannerPoint.style.top = y * 300 + 'px';
       }
     };
 
