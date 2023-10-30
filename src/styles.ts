@@ -55,6 +55,7 @@ export const pannerStyles = css`
         border-radius: 50%;
         transition: opacity 0.4s ease-in;
         box-shadow: 0px 0px 10px 0px #1fdeb9;
+        background: #fff;
     }
 
     .panner__cursor:hover::after {
