@@ -1,81 +1,27 @@
+// 
 import { LitElement, html, css } from 'lit';
 import { property } from 'lit/decorators';
+
+// Styles
+import { pannerStyles, wrapperStyles } from './styles';
 
 class SurroundPanner extends LitElement {
   @property({ type: Number }) pointX = 0.5;
   @property({ type: Number }) pointY = 0.5;
 
-  static styles = css`
-    :host {
-      display: block;
-      height: 100vh;
-      margin: -8px;
-      padding: 0;
-      background: #11131a; 
-    }
-
-    .wrapper {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      position: relative;
-    }
-
-    .panner {
-      width: 400px;
-      height: 400px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #203B45;
-    }
-
-    .panner__outer-bounds {
-      width: 300px;
-      height: 300px;
-      border: 1px solid #43a1a3;
-      border-radius: 50%;
-      position: relative;
-    }
-
-    .panner__cursor {
-      width: 14px;
-      height: 14px;
-      margin-top: -7px;
-      margin-left: -7px;
-      background: #1fdeb9;
-      border-radius: 50%;
-      position: absolute;
-      cursor: pointer;
-    }
-
-    .panner__cursor::after {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      border-radius: 50%;
-      transition: opacity 0.1s ease-in-out;
-      box-shadow: 0px 0px 10px 0px #1fdeb9;
-    }
-    
-    .panner__cursor:hover::after {
-      opacity: 1;
-    }
-
-    .values {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      font-size: 16px;
-      color: white;
-    }
-    
-  `
+  static styles = [
+    wrapperStyles,
+    pannerStyles,
+    css`
+      :host {
+        display: block;
+        height: 100vh;
+        margin: -8px;
+        padding: 0;
+        background: #11131a; 
+      }
+    `
+  ]
 
   render() {
     return html`
@@ -86,11 +32,18 @@ class SurroundPanner extends LitElement {
         </div>
         <div class="panner">
           <div class="panner__outer-bounds">
+            <!-- Cursor -->
             <div
               class="panner__cursor"
               style="top: ${this.pointY * 300}px; left: ${this.pointX * 300}px"
               @mousedown="${this.handleMouseDown}"
             ></div>
+            <!-- Speakers -->
+            <div class="speaker"></div>
+            <div class="speaker speaker--top-right"></div>
+            <div class="speaker speaker--top-left"></div>
+            <div class="speaker speaker--bottom-left"></div>
+            <div class="speaker speaker--bottom-right"></div>
           </div>
         </div>
       </div>
