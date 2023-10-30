@@ -80,6 +80,17 @@ export const pannerStyles = css`
         padding: 0;
     }
 
+    .speaker::before {
+        content: "";
+        position: absolute;
+        width: 1px;
+        background: #43a1a3;
+        height: var(--r);
+        transform: translate(50%, 0);
+        bottom: 0;
+        left: 50%;
+    }
+
     .speaker::after {
         content: "";
         position: absolute;
