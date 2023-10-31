@@ -61,7 +61,6 @@ class SurroundPanner extends LitElement {
   handleMouseDown(e: MouseEvent) {
     const offsetX = e.clientX - this.pointX * 300;
     const offsetY = e.clientY - this.pointY * 300;
-    const pannerPoint = this.shadowRoot?.querySelector('.panner-point') as HTMLElement;
 
     const handleMouseMove = (e: MouseEvent) => {
       const x = (e.clientX - offsetX) / 300;
@@ -74,8 +73,6 @@ class SurroundPanner extends LitElement {
       if (distance <= 0.5) {
         this.pointX = x;
         this.pointY = y;
-        pannerPoint.style.left = x * 300 + 'px';
-        pannerPoint.style.top = y * 300 + 'px';
       }
     };
 
