@@ -13,6 +13,24 @@ export const layoutStyles = css`
         justify-content: center;
         position: relative;
     }
+
+    button {
+        font-family: "Silkscreen", sans-serif;
+        padding: 7px 14px;
+        margin: 0;
+        border-radius: 4px;
+        border: 1px solid ${ternaryColor};
+        background: ${primaryColor};
+        text-transform: uppercase;
+        color: ${ternaryColor};
+        cursor: pointer;
+        transition: all 0.2s ease-out;
+    }
+
+    button:hover {
+        background: ${ternaryColor};
+        color: ${primaryColor};
+    }
 `
 
 export const pannerStyles = css`
@@ -167,7 +185,8 @@ export const interfaceStyles = css`
     }
 
     .display__data {
-        font-family: 'Silkscreen', sans-serif;
+        font-family: "Silkscreen", sans-serif;
         color: ${secondaryColor};
+        margin-bottom: 1em;
     }
 `

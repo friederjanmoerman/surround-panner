@@ -24,6 +24,7 @@ class SurroundPanner extends LitElement {
         padding: 0;
         background: ${primaryColor};
         font-family: Helvetica, sans-serif;
+        -webkit-font-smoothing: subpixel-antialiased;
       }
     `
   ]
@@ -54,7 +55,9 @@ class SurroundPanner extends LitElement {
             <div class="display__data">X ${this.pointX.toFixed(2)}</div>
             <div class="display__data">Y ${this.pointY.toFixed(2)}</div>
             <!-- Reset Button -->
-            <button @click="${this.resetCoordinates}">Reset</button>
+            <div class="button-wrapper"></div>
+              <button @click="${this.resetCoordinates}">Reset</button>
+            <
           </div>
 
       </div>
