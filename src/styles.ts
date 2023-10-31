@@ -83,27 +83,29 @@ export const pannerStyles = css`
         height: 14px;
         margin-top: -7px;
         margin-left: -7px;
-        background: ${ternaryColor};
+        background: ${secondaryColor};
         border-radius: 50%;
         position: absolute;
         cursor: pointer;
         z-index: 2000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .panner__cursor::after {
         content: "";
         position: absolute;
-        width: 100%;
-        height: 100%;
-        opacity: 0.2;
+        width: 200%;
+        height: 200%;
+        opacity: 0.4;
         border-radius: 50%;
         transition: opacity 0.4s ease-out;
-        box-shadow: 0px 0px 10px 0px ${secondaryColor};
-        background: ${secondaryColor};
+        background: ${ternaryColor};
     }
 
     .panner__cursor:hover::after {
-        opacity: 1;
+        opacity: 0.6;
     }
 
     .speaker {

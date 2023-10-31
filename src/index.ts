@@ -5,6 +5,9 @@ import { property } from 'lit/decorators';
 // Styles
 import { interfaceStyles, pannerStyles, layoutStyles } from './styles';
 
+// Theme
+import { primaryColor } from './theme';
+
 class SurroundPanner extends LitElement {
   @property({ type: Number }) pointX = 0.5;
   @property({ type: Number }) pointY = 0.5;
@@ -19,7 +22,7 @@ class SurroundPanner extends LitElement {
         height: 100vh;
         margin: -8px;
         padding: 0;
-        background: #000;
+        background: ${primaryColor};
         font-family: Helvetica, sans-serif;
       }
     `
