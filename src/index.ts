@@ -21,7 +21,6 @@ class SurroundPanner extends LitElement {
         padding: 0;
         background: #000;
         font-family: Helvetica, sans-serif;
-        color: #fff;
       }
     `
   ]
@@ -47,6 +46,7 @@ class SurroundPanner extends LitElement {
               <div class="speaker speaker--bottom-right"></div>
             </div>
           </div>
+           <!-- Display -->
           <div class="display">
             <div class="display__data">X ${this.pointX.toFixed(2)}</div>
             <div class="display__data">Y ${this.pointY.toFixed(2)}</div>

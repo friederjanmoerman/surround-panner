@@ -1,5 +1,7 @@
 import { css } from "lit";
 
+import { primaryColor, secondaryColor, ternaryColor } from "./theme";
+
 export const layoutStyles = css`
     .wrapper {
         width: 100%;
@@ -18,17 +20,17 @@ export const pannerStyles = css`
         display: flex;
         justify-content: center;
         align-items: center;
-        background: #000;
+        background: ${primaryColor};
         border-radius: 5% 0 0 5%;
         border-width: 1px 0 1px 1px;
         border-style: solid;
-        border-color: #fff;
+        border-color: ${secondaryColor};
     }
 
     .panner__bounds {
-        border: 1px solid #fff;
+        border: 1px solid ${secondaryColor};
         border-radius: 50%;
-        background: #000;
+        background: ${primaryColor};
         /* radius */
         --r: 150px;
         position: relative;
@@ -78,7 +80,7 @@ export const pannerStyles = css`
         height: 14px;
         margin-top: -7px;
         margin-left: -7px;
-        background: #fff;
+        background: ${secondaryColor};
         border-radius: 50%;
         position: absolute;
         cursor: pointer;
@@ -93,8 +95,8 @@ export const pannerStyles = css`
         opacity: 0.2;
         border-radius: 50%;
         transition: opacity 0.4s ease-out;
-        box-shadow: 0px 0px 10px 0px #fff;
-        background: #fff;
+        box-shadow: 0px 0px 10px 0px ${secondaryColor};
+        background: ${secondaryColor};
     }
 
     .panner__cursor:hover::after {
@@ -117,14 +119,14 @@ export const pannerStyles = css`
         position: absolute;
         box-sizing: border-box;
         display: inline-block;
-        background: #fff;
+        background: ${secondaryColor};
         background-clip: content-box;
         width: calc(var(--r) / 8);
         height: calc(var(--r) / 8);
         border-style: solid;
         border-color: transparent;
         border-width: calc(var(--r) / 28);
-        border-bottom-color: #fff;
+        border-bottom-color: ${secondaryColor};
     }
 
     .speaker--top-right {
@@ -152,15 +154,15 @@ export const interfaceStyles = css`
         justify-content: center;
         height: 400px;
         width: 400px;
-        background: #000;
+        background: ${primaryColor};
         border-radius: 0 5% 5% 0;
         border-width: 1px 1px 1px 0;
         border-style: solid;
-        border-color: #fff;
+        border-color: ${secondaryColor};
     }
 
     .display__data {
         font-family: 'Silkscreen', sans-serif;
-        color: #fff;
+        color: ${secondaryColor};
     }
 `
