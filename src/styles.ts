@@ -1,5 +1,7 @@
+// Lit
 import { css } from "lit";
 
+// Theme
 import { primaryColor, secondaryColor, ternaryColor } from "./theme";
 
 export const layoutStyles = css`
