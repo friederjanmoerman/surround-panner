@@ -9,8 +9,8 @@ import { interfaceStyles, pannerStyles, layoutStyles } from './styles';
 import { primaryColor } from './theme';
 
 class SurroundPanner extends LitElement {
-  @property({ type: Number }) pointX = 0.5;
-  @property({ type: Number }) pointY = 0.5;
+  @property({ type: Number }) pointX = 0;
+  @property({ type: Number }) pointY = 0;
 
   static styles = [
     layoutStyles,
@@ -38,7 +38,7 @@ class SurroundPanner extends LitElement {
               <!-- Cursor -->
               <div
                 class="panner__cursor"
-                style="top: ${this.pointY * 300}px; left: ${this.pointX * 300}px"
+                style="top: ${(-this.pointY + 1) * 150}px; left: ${(this.pointX + 1) * 150}px"
                 @mousedown="${this.handleMouseDown}"
               ></div>
               <!-- Speakers -->
@@ -59,18 +59,18 @@ class SurroundPanner extends LitElement {
   }
 
   handleMouseDown(e: MouseEvent) {
-    const offsetX = e.clientX - this.pointX * 300;
-    const offsetY = e.clientY - this.pointY * 300;
+    const offsetX = e.clientX - (this.pointX + 1) * 150;
+    const offsetY = e.clientY - (-this.pointY + 1) * 150;
 
     const handleMouseMove = (e: MouseEvent) => {
-      const x = (e.clientX - offsetX) / 300;
-      const y = (e.clientY - offsetY) / 300;
+      const x = (e.clientX - offsetX) / 150 - 1;
+      const y = -((e.clientY - offsetY) / 150 - 1);
 
-      const centerX = 0.5;
-      const centerY = 0.5;
+      const centerX = 0;
+      const centerY = 0;
       const distance = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2);
 
-      if (distance <= 0.5) {
+      if (distance <= 1) {
         this.pointX = x;
         this.pointY = y;
       }
