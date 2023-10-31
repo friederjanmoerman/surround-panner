@@ -53,7 +53,10 @@ class SurroundPanner extends LitElement {
           <div class="display">
             <div class="display__data">X ${this.pointX.toFixed(2)}</div>
             <div class="display__data">Y ${this.pointY.toFixed(2)}</div>
+            <!-- Reset Button -->
+            <button @click="${this.resetCoordinates}">Reset</button>
           </div>
+
       </div>
     `;
   }
@@ -83,6 +86,11 @@ class SurroundPanner extends LitElement {
 
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseup', handleMouseUp);
+  }
+
+  resetCoordinates() {
+    this.pointX = 0;
+    this.pointY = 0;
   }
 }
 
