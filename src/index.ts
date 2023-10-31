@@ -43,10 +43,10 @@ class SurroundPanner extends LitElement {
               ></div>
               <!-- Speakers -->
               <div class="speaker"></div>
-              <div class="speaker speaker--top-right"></div>
-              <div class="speaker speaker--top-left"></div>
-              <div class="speaker speaker--bottom-left"></div>
-              <div class="speaker speaker--bottom-right"></div>
+              <div class="speaker speaker__top-right"></div>
+              <div class="speaker speaker__top-left"></div>
+              <div class="speaker speaker__bottom-left"></div>
+              <div class="speaker speaker__bottom-right"></div>
             </div>
           </div>
            <!-- Display -->

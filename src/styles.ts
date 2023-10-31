@@ -134,19 +134,19 @@ export const pannerStyles = css`
         border-bottom-color: ${secondaryColor};
     }
 
-    .speaker--top-right {
+    .speaker__top-right {
         transform: rotate(30deg);
     }
 
-    .speaker--bottom-right {
+    .speaker__bottom-right {
         transform: rotate(110deg);
     }
 
-    .speaker--top-left {
+    .speaker__top-left {
         transform: rotate(-30deg);
     }
 
-    .speaker--bottom-left {
+    .speaker__bottom-left {
         transform: rotate(-110deg);
     }
 `
