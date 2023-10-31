@@ -1,9 +1,9 @@
-## Surround Panner UI
+# Surround Panner UI
 
-# install dependencies
+## Install dependencies
 
-npm i
+`npm i`
 
-# start up project locally with parcel
+## Start up project locally with parcel
 
-npm run start
+`npm run start`
