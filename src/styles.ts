@@ -52,7 +52,8 @@ export const pannerStyles = css`
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        background: rgba(255, 255, 255, 0.4);
+        background: ${secondaryColor};
+        opacity: 0.4;
     }
 
     .panner__xy-lines::before {
@@ -71,7 +72,7 @@ export const pannerStyles = css`
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        border: 1px solid rgba(255, 255, 255, 0.4);
+        border: 1px solid rgba(255,255,255,0.4);
         border-radius: 50%;
         width: var(--r);
         height: var(--r);
@@ -82,7 +83,7 @@ export const pannerStyles = css`
         height: 14px;
         margin-top: -7px;
         margin-left: -7px;
-        background: ${secondaryColor};
+        background: ${ternaryColor};
         border-radius: 50%;
         position: absolute;
         cursor: pointer;

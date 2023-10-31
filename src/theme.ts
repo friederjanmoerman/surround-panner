@@ -6,9 +6,9 @@ export const primaryColor = css`
 `;
 
 export const secondaryColor = css`
-    #48fcd6
+    #ffffff
 `;
 
 export const ternaryColor = css`
-    #d0075c
+    #48fcd6
 `;
