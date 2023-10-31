@@ -3,15 +3,16 @@ import { LitElement, html, css } from 'lit';
 import { property } from 'lit/decorators';
 
 // Styles
-import { pannerStyles, wrapperStyles } from './styles';
+import { interfaceStyles, pannerStyles, layoutStyles } from './styles';
 
 class SurroundPanner extends LitElement {
   @property({ type: Number }) pointX = 0.5;
   @property({ type: Number }) pointY = 0.5;
 
   static styles = [
-    wrapperStyles,
+    layoutStyles,
     pannerStyles,
+    interfaceStyles,
     css`
       :host {
         display: block;
@@ -26,26 +27,26 @@ class SurroundPanner extends LitElement {
   render() {
     return html`
       <div class="wrapper">
-        <div class="values">
-                X: ${this.pointX.toFixed(2)}<br>
-                Y: ${this.pointY.toFixed(2)}
-        </div>
-        <div class="panner">
-          <div class="panner__outer-bounds">
-            <!-- Cursor -->
-            <div
-              class="panner__cursor"
-              style="top: ${this.pointY * 300}px; left: ${this.pointX * 300}px"
-              @mousedown="${this.handleMouseDown}"
-            ></div>
-            <!-- Speakers -->
-            <div class="speaker"></div>
-            <div class="speaker speaker--top-right"></div>
-            <div class="speaker speaker--top-left"></div>
-            <div class="speaker speaker--bottom-left"></div>
-            <div class="speaker speaker--bottom-right"></div>
+          <div class="panner">
+            <div class="panner__bounds">
+              <!-- Cursor -->
+              <div
+                class="panner__cursor"
+                style="top: ${this.pointY * 300}px; left: ${this.pointX * 300}px"
+                @mousedown="${this.handleMouseDown}"
+              ></div>
+              <!-- Speakers -->
+              <div class="speaker"></div>
+              <div class="speaker speaker--top-right"></div>
+              <div class="speaker speaker--top-left"></div>
+              <div class="speaker speaker--bottom-left"></div>
+              <div class="speaker speaker--bottom-right"></div>
+            </div>
           </div>
-        </div>
+          <div class="display">
+            X: ${this.pointX.toFixed(2)}<br>
+            Y: ${this.pointY.toFixed(2)}
+          </div>
       </div>
     `;
   }

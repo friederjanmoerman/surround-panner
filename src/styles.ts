@@ -1,13 +1,12 @@
 import { css } from "lit";
 
-export const wrapperStyles = css`
+export const layoutStyles = css`
     .wrapper {
         width: 100%;
         height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-direction: column;
         position: relative;
     }
 `
@@ -22,16 +21,26 @@ export const pannerStyles = css`
         background: #203B45;
     }
 
-    .panner__outer-bounds {
-        border: 1px solid #43a1a3;
+    .panner__bounds {
+        border: 1px solid rgba(67, 161, 163, 0.4);;
         border-radius: 50%;
         --r: 150px;
         /* radius of the circle */
         position: relative;
         width: calc(2 * var(--r));
         height: calc(2 * var(--r));
-        margin: 0;
-        padding: 0;
+    }
+
+    .panner__bounds::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 1px solid rgba(67, 161, 163, 0.4);
+        border-radius: 50%;
+        width: var(--r);
+        height: var(--r);
     }
 
     .panner__cursor {
@@ -47,7 +56,7 @@ export const pannerStyles = css`
     }
 
     .panner__cursor::after {
-        content: '';
+        content: "";
         position: absolute;
         width: 100%;
         height: 100%;
@@ -62,34 +71,15 @@ export const pannerStyles = css`
         opacity: 1;
     }
 
-    .values {
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        font-size: 16px;
-        color: white;
-    }
-
     .speaker {
         height: calc(var(--r) * 1.3);
-        width: calc(var(--r) / 5);
+        width: calc(var(--r) / 4);
         position: absolute;
         bottom: var(--r);
-        left: calc(var(--r) - (0.5 * var(--r) / 5));
+        left: calc(var(--r) - (0.5 * var(--r) / 4));
         transform-origin: center bottom;
         margin: 0;
         padding: 0;
-    }
-
-    .speaker::before {
-        content: "";
-        position: absolute;
-        width: 1px;
-        background: #43a1a3;
-        height: var(--r);
-        transform: translate(50%, 0);
-        bottom: 0;
-        left: 50%;
     }
 
     .speaker::after {
@@ -99,11 +89,11 @@ export const pannerStyles = css`
         display: inline-block;
         background: #43a1a3;
         background-clip: content-box;
-        width: calc(var(--r) / 5);
-        height: calc(var(--r) /4.2);
+        width: calc(var(--r) / 4);
+        height: calc(var(--r) / 4);
         border-style: solid;
         border-color: transparent;
-        border-width: calc(var(--r) /16);
+        border-width: calc(var(--r) /14);
         border-bottom-color: #43a1a3;
     }
 
@@ -121,5 +111,14 @@ export const pannerStyles = css`
 
     .speaker--bottom-left {
         transform: rotate(-110deg);
+    }
+`
+
+export const interfaceStyles = css`
+    .display {
+        display: flex;
+        height: 400px;
+        width: 400px;
+        background: #203B45;
     }
 `
