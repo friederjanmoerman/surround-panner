@@ -19,7 +19,9 @@ class SurroundPanner extends LitElement {
         height: 100vh;
         margin: -8px;
         padding: 0;
-        background: #11131a; 
+        background: #000;
+        font-family: Helvetica, sans-serif;
+        color: #fff;
       }
     `
   ]
@@ -29,6 +31,8 @@ class SurroundPanner extends LitElement {
       <div class="wrapper">
           <div class="panner">
             <div class="panner__bounds">
+              <!-- XY lines -->
+              <div class="panner__xy-lines"></div>
               <!-- Cursor -->
               <div
                 class="panner__cursor"
@@ -44,8 +48,8 @@ class SurroundPanner extends LitElement {
             </div>
           </div>
           <div class="display">
-            X: ${this.pointX.toFixed(2)}<br>
-            Y: ${this.pointY.toFixed(2)}
+            <div class="display__data">X ${this.pointX.toFixed(2)}</div>
+            <div class="display__data">Y ${this.pointY.toFixed(2)}</div>
           </div>
       </div>
     `;

@@ -18,17 +18,47 @@ export const pannerStyles = css`
         display: flex;
         justify-content: center;
         align-items: center;
-        background: #203B45;
+        background: #000;
+        border-radius: 5% 0 0 5%;
+        border-width: 1px 0 1px 1px;
+        border-style: solid;
+        border-color: #fff;
     }
 
     .panner__bounds {
-        border: 1px solid rgba(67, 161, 163, 0.4);;
+        border: 1px solid #fff;
         border-radius: 50%;
+        background: #000;
+        /* radius */
         --r: 150px;
-        /* radius of the circle */
         position: relative;
         width: calc(2 * var(--r));
         height: calc(2 * var(--r));
+    }
+
+    .panner__xy-lines {
+        position: relative;
+        height: 100%;
+        width: 100%;
+    }
+
+    .panner__xy-lines::before, .panner__xy-lines::after{
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(255, 255, 255, 0.4);
+    }
+
+    .panner__xy-lines::before {
+        height: 1px;
+        width: 100%;
+    }
+
+    .panner__xy-lines::after {
+        width: 1px;
+        height: 100%;
     }
 
     .panner__bounds::after {
@@ -37,7 +67,7 @@ export const pannerStyles = css`
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        border: 1px solid rgba(67, 161, 163, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.4);
         border-radius: 50%;
         width: var(--r);
         height: var(--r);
@@ -48,7 +78,7 @@ export const pannerStyles = css`
         height: 14px;
         margin-top: -7px;
         margin-left: -7px;
-        background: #1fdeb9;
+        background: #fff;
         border-radius: 50%;
         position: absolute;
         cursor: pointer;
@@ -62,8 +92,8 @@ export const pannerStyles = css`
         height: 100%;
         opacity: 0.2;
         border-radius: 50%;
-        transition: opacity 0.4s ease-in;
-        box-shadow: 0px 0px 10px 0px #1fdeb9;
+        transition: opacity 0.4s ease-out;
+        box-shadow: 0px 0px 10px 0px #fff;
         background: #fff;
     }
 
@@ -72,11 +102,11 @@ export const pannerStyles = css`
     }
 
     .speaker {
-        height: calc(var(--r) * 1.3);
-        width: calc(var(--r) / 4);
+        height: calc(var(--r) * 1.2);
+        width: calc(var(--r) / 8);
         position: absolute;
         bottom: var(--r);
-        left: calc(var(--r) - (0.5 * var(--r) / 4));
+        left: calc(var(--r) - (0.5 * var(--r) / 8));
         transform-origin: center bottom;
         margin: 0;
         padding: 0;
@@ -87,14 +117,14 @@ export const pannerStyles = css`
         position: absolute;
         box-sizing: border-box;
         display: inline-block;
-        background: #43a1a3;
+        background: #fff;
         background-clip: content-box;
-        width: calc(var(--r) / 4);
-        height: calc(var(--r) / 4);
+        width: calc(var(--r) / 8);
+        height: calc(var(--r) / 8);
         border-style: solid;
         border-color: transparent;
-        border-width: calc(var(--r) /14);
-        border-bottom-color: #43a1a3;
+        border-width: calc(var(--r) / 28);
+        border-bottom-color: #fff;
     }
 
     .speaker--top-right {
@@ -117,8 +147,20 @@ export const pannerStyles = css`
 export const interfaceStyles = css`
     .display {
         display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         height: 400px;
         width: 400px;
-        background: #203B45;
+        background: #000;
+        border-radius: 0 5% 5% 0;
+        border-width: 1px 1px 1px 0;
+        border-style: solid;
+        border-color: #fff;
+    }
+
+    .display__data {
+        font-family: 'Silkscreen', sans-serif;
+        color: #fff;
     }
 `
