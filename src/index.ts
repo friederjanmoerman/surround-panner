@@ -57,9 +57,7 @@ class SurroundPanner extends LitElement {
             <!-- Reset Button -->
             <div class="button-wrapper"></div>
               <button @click="${this.resetCoordinates}">Reset</button>
-            <
           </div>
-
       </div>
     `;
   }
