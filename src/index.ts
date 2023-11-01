@@ -13,14 +13,18 @@ class SurroundPanner extends LitElement {
   @property({ type: Number }) pointX = 0;
   @property({ type: Number }) pointY = 0;
 
+  @property({ type: Number }) centerDistance = 1;
+  @property({ type: Number }) frontLDistance = 1;
+  @property({ type: Number }) frontRDistance = 1;
+  @property({ type: Number }) surroundLDistance = 1;
+  @property({ type: Number }) surroundRDistance = 1;
+
   @property({ type: Number }) pointXFixed = 0;
   @property({ type: Number }) pointYFixed = 1;
   @property({ type: Number }) point30XFixed = 0 * Math.cos((30 * Math.PI) / 180) - 1 * Math.sin((30 * Math.PI) / 180);
   @property({ type: Number }) point30YFixed =  0 * Math.sin((30 * Math.PI) / 180) + 1 * Math.cos((30 * Math.PI) / 180);
   @property({ type: Number }) point110XFixed = 0 * Math.cos((110 * Math.PI) / 180) - 1 * Math.sin((110 * Math.PI) / 180);
   @property({ type: Number }) point110YFixed =  0 * Math.sin((110 * Math.PI) / 180) + 1 * Math.cos((110 * Math.PI) / 180);
-
-  @property({ type: Number }) distanceCenter = 0;
 
   static styles = [
     layoutStyles,
@@ -83,8 +87,12 @@ class SurroundPanner extends LitElement {
           </div>
            <!-- Display -->
           <div class="display">
-            <div class="display__data">X ${this.pointX.toFixed(2)}</div>
-            <div class="display__data">Y ${this.pointY.toFixed(2)}</div>
+            <div class="display__data">Center: ${this.centerDistance.toFixed(2)}</div>
+            <div class="display__data">FrontL: ${this.frontLDistance.toFixed(2)}</div>
+            <div class="display__data">FrontR: ${this.frontRDistance.toFixed(2)}</div>
+            <div class="display__data">BackL: ${this.surroundLDistance.toFixed(2)}</div>
+            <div class="display__data">BackR: ${this.surroundRDistance.toFixed(2)}</div>
+
             <!-- Reset Button -->
             <div class="button-wrapper"></div>
               <button @click="${this.resetCoordinates}">Reset</button>
@@ -103,18 +111,29 @@ class SurroundPanner extends LitElement {
 
       const borderCheck = Math.sqrt(x ** 2 + y ** 2 );
 
+      const centerDistance = Math.sqrt((x - this.pointXFixed) ** 2 + (y - this.pointYFixed) ** 2);
+      const frontLDistance = Math.sqrt((x - this.point30XFixed) ** 2 + (y - this.point30YFixed) ** 2);
+      const frontRDistance = Math.sqrt((x - this.point30XFixed) ** 2 + (y - this.point30YFixed) ** 2);
+      const surroundLDistance = Math.sqrt((x - this.point110XFixed) ** 2 + (y - this.point110YFixed) ** 2);
+      const surroundRDistance = Math.sqrt((x - this.point110XFixed) ** 2 + (y - this.point110YFixed) ** 2);
+
       if (borderCheck <= 1) {
           this.pointX = x;
           this.pointY = y;
-          const x1 = this.pointXFixed;
-          const y1 = this.pointYFixed;
+
+          this.centerDistance = centerDistance;
+          this.frontLDistance = frontLDistance;
+          this.frontRDistance = frontRDistance;
+          this.surroundLDistance = surroundLDistance;
+          this.surroundRDistance = surroundRDistance;
 
           console.log("x1: " + this.pointXFixed, "y1: " + this.pointYFixed)
           console.log("x2: " + x, "y2: " + y)
-
-          const centerDistance = Math.sqrt((x - x1) ** 2 + (y - y1) ** 2);
-
-          console.log(centerDistance)
+          console.log("Center: " + centerDistance)
+          console.log("FrontL: " + frontLDistance)
+          console.log("FrontR: " + frontRDistance)
+          console.log("SurroundL: " + surroundLDistance)
+          console.log("SurroundL: " + surroundRDistance)
       }
     };
   
@@ -132,6 +151,8 @@ class SurroundPanner extends LitElement {
   resetCoordinates() {
     this.pointX = 0;
     this.pointY = 0;
+    this.centerDistance = 1;
+
   }
 }
 
