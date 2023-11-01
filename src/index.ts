@@ -101,11 +101,20 @@ class SurroundPanner extends LitElement {
       const x = (e.clientX - offsetX) / 150 - 1;
       const y = -((e.clientY - offsetY) / 150 - 1);
 
-      const borderCheck = Math.sqrt(x ** 2 + (y ** 2) );
+      const borderCheck = Math.sqrt(x ** 2 + y ** 2 );
 
       if (borderCheck <= 1) {
           this.pointX = x;
           this.pointY = y;
+          const x1 = this.pointXFixed;
+          const y1 = this.pointYFixed;
+
+          console.log("x1: " + this.pointXFixed, "y1: " + this.pointYFixed)
+          console.log("x2: " + x, "y2: " + y)
+
+          const centerDistance = Math.sqrt((x - x1) ** 2 + (y - y1) ** 2);
+
+          console.log(centerDistance)
       }
     };
   
