@@ -111,6 +111,17 @@ export const pannerStyles = css`
         justify-content: center;
     }
 
+    .panner__checkpoint {
+        width: 14px;
+        height: 14px;
+        margin-top: -7px;
+        margin-left: -7px;
+        background: ${secondaryColor};
+        border-radius: 50%;
+        position: absolute;
+        z-index: 1500;
+    } 
+
     .panner__cursor::after {
         content: "";
         position: absolute;

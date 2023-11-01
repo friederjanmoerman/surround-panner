@@ -2,6 +2,7 @@
 import { LitElement, html, css } from 'lit';
 import { property } from 'lit/decorators';
 
+
 // Styles
 import { interfaceStyles, pannerStyles, layoutStyles } from './styles';
 
@@ -11,6 +12,15 @@ import { primaryColor } from './theme';
 class SurroundPanner extends LitElement {
   @property({ type: Number }) pointX = 0;
   @property({ type: Number }) pointY = 0;
+
+  @property({ type: Number }) pointXFixed = 0;
+  @property({ type: Number }) pointYFixed = 1;
+  @property({ type: Number }) point30XFixed = 0 * Math.cos((30 * Math.PI) / 180) - 1 * Math.sin((30 * Math.PI) / 180);
+  @property({ type: Number }) point30YFixed =  0 * Math.sin((30 * Math.PI) / 180) + 1 * Math.cos((30 * Math.PI) / 180);
+  @property({ type: Number }) point110XFixed = 0 * Math.cos((110 * Math.PI) / 180) - 1 * Math.sin((110 * Math.PI) / 180);
+  @property({ type: Number }) point110YFixed =  0 * Math.sin((110 * Math.PI) / 180) + 1 * Math.cos((110 * Math.PI) / 180);
+
+  @property({ type: Number }) distanceCenter = 0;
 
   static styles = [
     layoutStyles,
@@ -42,6 +52,27 @@ class SurroundPanner extends LitElement {
                 style="top: ${(-this.pointY + 1) * 150}px; left: ${(this.pointX + 1) * 150}px"
                 @mousedown="${this.handleMouseDown}"
               ></div>
+              <!-- Checkpoints -->
+              <div
+                class="panner__checkpoint"
+                style="top: ${(-this.pointYFixed + 1) * 150}px; left: ${(this.pointXFixed + 1) * 150}px"
+              ></div>
+              <div
+                class="panner__checkpoint"
+                style="top: ${(-this.point30YFixed + 1) * 150}px; left: ${(-this.point30XFixed + 1) * 150}px"
+              ></div>
+              <div
+                class="panner__checkpoint"
+                style="top: ${(-this.point30YFixed + 1) * 150}px; left: ${(this.point30XFixed + 1) * 150}px"
+              ></div>
+              <div
+                class="panner__checkpoint"
+                style="top: ${(-this.point110YFixed + 1) * 150}px; left: ${(-this.point110XFixed + 1) * 150}px"
+              ></div>
+              <div
+                class="panner__checkpoint"
+                style="top: ${(-this.point110YFixed + 1) * 150}px; left: ${(this.point110XFixed + 1) * 150}px"
+              ></div>
               <!-- Speakers -->
               <div class="speaker"></div>
               <div class="speaker speaker__top-right"></div>
@@ -65,29 +96,29 @@ class SurroundPanner extends LitElement {
   handleMouseDown(e: MouseEvent) {
     const offsetX = e.clientX - (this.pointX + 1) * 150;
     const offsetY = e.clientY - (-this.pointY + 1) * 150;
-
+  
     const handleMouseMove = (e: MouseEvent) => {
       const x = (e.clientX - offsetX) / 150 - 1;
       const y = -((e.clientY - offsetY) / 150 - 1);
 
-      const centerX = 0;
-      const centerY = 0;
-      const distance = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2);
+      const borderCheck = Math.sqrt(x ** 2 + (y ** 2) );
 
-      if (distance <= 1) {
-        this.pointX = x;
-        this.pointY = y;
+      if (borderCheck <= 1) {
+          this.pointX = x;
+          this.pointY = y;
       }
     };
-
+  
     const handleMouseUp = () => {
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseup', handleMouseUp);
     };
-
+  
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseup', handleMouseUp);
   }
+  
+  
 
   resetCoordinates() {
     this.pointX = 0;
