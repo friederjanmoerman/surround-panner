@@ -1,11 +1,6 @@
 // Convert distance to dB value
-export function convertDistanceTodB(
-  value: number,
-  dBMinValue: number = 0,
-  dBMaxValue: number = 120,
-): number {
-  const mappedValue =
-    dBMinValue + (dBMaxValue - dBMinValue) * (1 - (value - minValue) / (maxValue - minValue))
+export function convertDistanceTodB(value: number, dBMinValue: number = 0, dBMaxValue: number = 120): number {
+  const mappedValue = dBMinValue + (dBMaxValue - dBMinValue) * (1 - (value - minValue) / (maxValue - minValue))
   return mappedValue
 }
 
@@ -15,9 +10,7 @@ const maxValue = 2
 const colorMaxValue = 255
 
 function convertDistanceToColor(value: number, colorMinValue: number): number {
-  return (
-    colorMinValue + ((value - minValue) * (colorMaxValue - colorMinValue)) / (maxValue - minValue)
-  )
+  return colorMinValue + ((value - minValue) * (colorMaxValue - colorMinValue)) / (maxValue - minValue)
 }
 
 export function convertDistanceToColorR(value: number): number {
