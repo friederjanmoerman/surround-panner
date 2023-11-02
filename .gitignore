@@ -17,9 +17,9 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
-.env*.local
+.env*.local 
 
-# typescript
+# typescript 
 *.tsbuildinfo
 next-env.d.ts
 

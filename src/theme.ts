@@ -11,4 +11,4 @@ export const secondaryColor = css`
 
 export const ternaryColor = css`
     #48fcd6
-`;
+`; 
