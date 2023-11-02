@@ -151,7 +151,10 @@ class SurroundPanner extends LitElement {
     this.pointX = 0;
     this.pointY = 0;
     this.centerDistance = 1;
-
+    this.frontLDistance = 1;
+    this.frontRDistance = 1;
+    this.surroundLDistance = 1;
+    this.surroundRDistance = 1;
   }
 }
 
