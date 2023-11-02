@@ -17,6 +17,7 @@ import {
 } from './utils'
 
 class SurroundPanner extends LitElement {
+  // Properties for the panner's initial coordinates and distances
   @property({ type: Number }) pointX = 0
   @property({ type: Number }) pointY = 0
 
@@ -26,6 +27,7 @@ class SurroundPanner extends LitElement {
   @property({ type: Number }) surroundLDistance = 1
   @property({ type: Number }) surroundRDistance = 1
 
+  // Fixed point properties
   @property({ type: Number }) pointXFixed = 0
   @property({ type: Number }) pointYFixed = 1
   @property({ type: Number }) point30XFixed =
@@ -160,16 +162,26 @@ class SurroundPanner extends LitElement {
     `
   }
 
+  // Allows the user to click and drag the panner within certain boundaries,
+  // and it updates the panner's position and distances as the user drags it.
   handleMouseDown(e: MouseEvent) {
     const offsetX = e.clientX - (this.pointX + 1) * 150
     const offsetY = e.clientY - (-this.pointY + 1) * 150
 
+    // Calculates the new position of the panner while the user drags it
     const handleMouseMove = (e: MouseEvent) => {
+      // Calculate the new X and Y coordinates of the panner based on the mouse position.
+      // The division by 150 scales the coordinates to fit within the panner's bounds,
+      // and the subtraction adjusts the coordinates to be centered at (0, 0) within the panner.
       const x = (e.clientX - offsetX) / 150 - 1
       const y = -((e.clientY - offsetY) / 150 - 1)
 
+      // Calculates the distance of the panner's new position from the center (0, 0) using the Pythagorean theorem.
+      // To check if the panner remains within the circular boundary (if borderCheck is less than or equal to 1).
       const borderCheck = Math.sqrt(x ** 2 + y ** 2)
 
+      // Calculate the distances between the panner's new position and various fixed points on the screen.
+      // Used to calculate speaker volumes.
       const centerDistance = Math.sqrt((x - this.pointXFixed) ** 2 + (y - this.pointYFixed) ** 2)
       const frontLDistance = Math.sqrt(
         (x - this.point30XFixed) ** 2 + (y - this.point30YFixed) ** 2,
@@ -184,6 +196,7 @@ class SurroundPanner extends LitElement {
         (-x - this.point110XFixed) ** 2 + (y - this.point110YFixed) ** 2,
       )
 
+      // Only update values if between circular boundary
       if (borderCheck <= 1) {
         this.pointX = x
         this.pointY = y
@@ -205,6 +218,7 @@ class SurroundPanner extends LitElement {
     document.addEventListener('mouseup', handleMouseUp)
   }
 
+  // Function to reset the panner's position and distances
   resetPannerState() {
     this.pointX = 0
     this.pointY = 0
