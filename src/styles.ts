@@ -16,9 +16,9 @@ export const layoutStyles = css`
 
     button {
         font-family: "Silkscreen", sans-serif;
-        padding: 7px 14px;
+        padding: 6px 20px;
         margin: 0;
-        border-radius: 4px;
+        border-radius: 30px;
         border: 1px solid ${ternaryColor};
         background: ${primaryColor};
         text-transform: uppercase;
@@ -40,11 +40,13 @@ export const pannerStyles = css`
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
         background: ${primaryColor};
-        border-radius: 5% 0 0 5%;
-        border-width: 1px 0 1px 1px;
+        border-radius: 5%;
+        border-width: 1px;
         border-style: solid;
         border-color: ${secondaryColor};
+        padding: 80px 40px 40px 40px;
     }
 
     .panner__bounds {
@@ -56,6 +58,7 @@ export const pannerStyles = css`
         position: relative;
         width: calc(2 * var(--r));
         height: calc(2 * var(--r));
+        margin-bottom: 40px;
     }
 
     .panner__xy-lines {
@@ -112,15 +115,52 @@ export const pannerStyles = css`
     }
 
     .panner__checkpoint {
-        width: 14px;
-        height: 14px;
-        margin-top: -7px;
-        margin-left: -7px;
+        width: 8px;
+        height: 8px;
+        margin-top: -4px;
+        margin-left: -4px;
         background: ${secondaryColor};
         border-radius: 50%;
         position: absolute;
         z-index: 1500;
-    } 
+        display: flex;
+        justify-content: center;
+    }
+
+    .panner__checkpoint__speaker-volume {
+        position: absolute;
+        font-family: "Silkscreen", sans-serif;
+        font-size: 12px;
+        white-space: nowrap;
+        color: ${secondaryColor};
+        top: -50px;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    .panner__checkpoint__top-left .panner__checkpoint__speaker-volume {
+       left: -55px;
+    }
+
+    .panner__checkpoint__top-right .panner__checkpoint__speaker-volume {
+       right: -55px;
+    }
+
+    .panner__checkpoint__bottom .panner__checkpoint__speaker-volume {
+       top: 35px;
+    }
+
+    .panner__checkpoint__bottom-left .panner__checkpoint__speaker-volume {
+       left: -55px;
+    }
+
+    .panner__checkpoint__bottom-right .panner__checkpoint__speaker-volume {
+       right: -55px;
+    }
 
     .panner__cursor::after {
         content: "";
@@ -146,6 +186,15 @@ export const pannerStyles = css`
         transform-origin: center bottom;
         margin: 0;
         padding: 0;
+        color: ${secondaryColor};
+    }
+
+    .speaker__bottom-right .speaker__value {
+        transform: rotate(-110deg);
+    }
+
+    .speaker__bottom-left .speaker__value {
+        transform: rotate(110deg);
     }
 
     .speaker::after {
@@ -177,27 +226,5 @@ export const pannerStyles = css`
 
     .speaker__bottom-left {
         transform: rotate(-110deg);
-    }
-`
-
-export const interfaceStyles = css`
-    .display {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 400px;
-        width: 400px;
-        background: ${primaryColor};
-        border-radius: 0 5% 5% 0;
-        border-width: 1px 1px 1px 0;
-        border-style: solid;
-        border-color: ${secondaryColor};
-    }
-
-    .display__data {
-        font-family: "Silkscreen", sans-serif;
-        color: ${secondaryColor};
-        margin-bottom: 1em;
     }
 `

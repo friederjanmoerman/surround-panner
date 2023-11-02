@@ -2,9 +2,8 @@
 import { LitElement, html, css } from 'lit';
 import { property } from 'lit/decorators';
 
-
 // Styles
-import { interfaceStyles, pannerStyles, layoutStyles } from './styles';
+import { pannerStyles, layoutStyles } from './styles';
 
 // Theme
 import { primaryColor } from './theme';
@@ -29,7 +28,6 @@ class SurroundPanner extends LitElement {
   static styles = [
     layoutStyles,
     pannerStyles,
-    interfaceStyles,
     css`
       :host {
         display: block;
@@ -60,41 +58,51 @@ class SurroundPanner extends LitElement {
               <div
                 class="panner__checkpoint"
                 style="top: ${(-this.pointYFixed + 1) * 150}px; left: ${(this.pointXFixed + 1) * 150}px"
-              ></div>
+              >
+                <div class="panner__checkpoint__speaker-volume" style="color: rgba(${convertDistanceToColorR(this.centerDistance)},${convertDistanceToColorG(this.centerDistance)},${convertDistanceToColorB(this.centerDistance)}">
+                  ${convertDistanceTodB(this.centerDistance).toFixed(2)} db
+                </div>
+              </div>
               <div
-                class="panner__checkpoint"
-                style="top: ${(-this.point30YFixed + 1) * 150}px; left: ${(-this.point30XFixed + 1) * 150}px"
-              ></div>
-              <div
-                class="panner__checkpoint"
+                class="panner__checkpoint panner__checkpoint__top-left"
                 style="top: ${(-this.point30YFixed + 1) * 150}px; left: ${(this.point30XFixed + 1) * 150}px"
-              ></div>
+              >
+                <div class="panner__checkpoint__speaker-volume" style="color: rgba(${convertDistanceToColorR(this.frontLDistance)},${convertDistanceToColorG(this.frontLDistance)},${convertDistanceToColorB(this.frontLDistance)}">
+                  ${convertDistanceTodB(this.frontLDistance).toFixed(2)} db
+                </div>
+              </div>
               <div
-                class="panner__checkpoint"
-                style="top: ${(-this.point110YFixed + 1) * 150}px; left: ${(-this.point110XFixed + 1) * 150}px"
-              ></div>
+                class="panner__checkpoint panner__checkpoint__top-right"
+                style="top: ${(-this.point30YFixed + 1) * 150}px; left: ${(-this.point30XFixed + 1) * 150}px"
+              >
+                <div class="panner__checkpoint__speaker-volume" style="color: rgba(${convertDistanceToColorR(this.frontRDistance)},${convertDistanceToColorG(this.frontRDistance)},${convertDistanceToColorB(this.frontRDistance)}">
+                  ${convertDistanceTodB(this.frontRDistance).toFixed(2)} db
+                </div>
+              </div>
               <div
-                class="panner__checkpoint"
+                class="panner__checkpoint panner__checkpoint__bottom panner__checkpoint__bottom-left"
                 style="top: ${(-this.point110YFixed + 1) * 150}px; left: ${(this.point110XFixed + 1) * 150}px"
-              ></div>
+              >
+                <div class="panner__checkpoint__speaker-volume" style="color: rgba(${convertDistanceToColorR(this.surroundLDistance)},${convertDistanceToColorG(this.surroundLDistance)},${convertDistanceToColorB(this.surroundLDistance)}">
+                  ${convertDistanceTodB(this.surroundLDistance).toFixed(2)} db
+                </div>
+              </div>
+              <div
+                class="panner__checkpoint panner__checkpoint__bottom panner__checkpoint__bottom-right"
+                style="top: ${(-this.point110YFixed + 1) * 150}px; left: ${(-this.point110XFixed + 1) * 150}px"
+              >
+                <div class="panner__checkpoint__speaker-volume" style="color: rgba(${convertDistanceToColorR(this.surroundRDistance)},${convertDistanceToColorG(this.surroundRDistance)},${convertDistanceToColorB(this.surroundRDistance)}">
+                  ${convertDistanceTodB(this.surroundRDistance).toFixed(2)} db
+                </div>
+              </div>
               <!-- Speakers -->
-              <div class="speaker"></div>
+              <div class="speaker speaker__center"></div>
               <div class="speaker speaker__top-right"></div>
               <div class="speaker speaker__top-left"></div>
               <div class="speaker speaker__bottom-left"></div>
               <div class="speaker speaker__bottom-right"></div>
             </div>
-          </div>
-           <!-- Display -->
-          <div class="display">
-            <div class="display__data">Center: ${this.centerDistance.toFixed(2)}</div>
-            <div class="display__data">FrontL: ${this.frontLDistance.toFixed(2)}</div>
-            <div class="display__data">FrontR: ${this.frontRDistance.toFixed(2)}</div>
-            <div class="display__data">BackL: ${this.surroundLDistance.toFixed(2)}</div>
-            <div class="display__data">BackR: ${this.surroundRDistance.toFixed(2)}</div>
-            <!-- Reset Button -->
-            <div class="button-wrapper"></div>
-              <button @click="${this.resetCoordinates}">Reset</button>
+          <button @click="${this.resetCoordinates}">Reset</button>
           </div>
       </div>
     `;
@@ -125,14 +133,6 @@ class SurroundPanner extends LitElement {
           this.frontRDistance = frontRDistance;
           this.surroundLDistance = surroundLDistance;
           this.surroundRDistance = surroundRDistance;
-
-          console.log("x1: " + this.pointXFixed, "y1: " + this.pointYFixed)
-          console.log("x2: " + x, "y2: " + y)
-          console.log("Center: " + centerDistance)
-          console.log("FrontL: " + frontLDistance)
-          console.log("FrontR: " + frontRDistance)
-          console.log("SurroundL: " + surroundLDistance)
-          console.log("SurroundR: " + surroundRDistance)
       }
     };
   
@@ -144,8 +144,6 @@ class SurroundPanner extends LitElement {
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseup', handleMouseUp);
   }
-  
-  
 
   resetCoordinates() {
     this.pointX = 0;
@@ -156,6 +154,52 @@ class SurroundPanner extends LitElement {
     this.surroundLDistance = 1;
     this.surroundRDistance = 1;
   }
+}
+
+function convertDistanceTodB(value: number): number {
+  const minValue = 0;
+  const maxValue = 2;
+  const dBMinValue = 0;
+  const dBMaxValue = 120;
+
+  const mappedValue = dBMinValue + (dBMaxValue - dBMinValue) * (1 - (value - minValue) / (maxValue - minValue));
+
+  return mappedValue;
+}
+
+
+// Color transitions calculations
+function convertDistanceToColorR(value: number): number {
+  const minValue = 0;
+  const maxValue = 2;
+  const dBMinValue = 179;
+  const dBMaxValue = 255;
+
+  const mappedValue = dBMinValue + (value - minValue) * (dBMaxValue - dBMinValue) / (maxValue - minValue);
+
+  return mappedValue;
+}
+
+function convertDistanceToColorG(value: number): number {
+  const minValue = 0;
+  const maxValue = 2;
+  const dBMinValue = 25;
+  const dBMaxValue = 255;
+
+  const mappedValue = dBMinValue + (value - minValue) * (dBMaxValue - dBMinValue) / (maxValue - minValue);
+
+  return mappedValue;
+}
+
+function convertDistanceToColorB(value: number): number {
+  const minValue = 0;
+  const maxValue = 2;
+  const dBMinValue = 146;
+  const dBMaxValue = 255;
+
+  const mappedValue = dBMinValue + (value - minValue) * (dBMaxValue - dBMinValue) / (maxValue - minValue);
+
+  return mappedValue;
 }
 
 customElements.define('surround-panner', SurroundPanner);
