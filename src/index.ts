@@ -9,12 +9,7 @@ import { pannerStyles, layoutStyles } from './styles'
 import { primaryColor } from './theme'
 
 // Utils
-import {
-  convertDistanceTodB,
-  convertDistanceToColorR,
-  convertDistanceToColorG,
-  convertDistanceToColorB,
-} from './utils'
+import { convertDistanceTodB, convertDistanceToColorR, convertDistanceToColorG, convertDistanceToColorB } from './utils'
 
 class SurroundPanner extends LitElement {
   // Properties for the panner's initial coordinates and distances
@@ -30,14 +25,10 @@ class SurroundPanner extends LitElement {
   // Fixed point properties
   @property({ type: Number }) pointXFixed = 0
   @property({ type: Number }) pointYFixed = 1
-  @property({ type: Number }) point30XFixed =
-    0 * Math.cos((30 * Math.PI) / 180) - 1 * Math.sin((30 * Math.PI) / 180)
-  @property({ type: Number }) point30YFixed =
-    0 * Math.sin((30 * Math.PI) / 180) + 1 * Math.cos((30 * Math.PI) / 180)
-  @property({ type: Number }) point110XFixed =
-    0 * Math.cos((110 * Math.PI) / 180) - 1 * Math.sin((110 * Math.PI) / 180)
-  @property({ type: Number }) point110YFixed =
-    0 * Math.sin((110 * Math.PI) / 180) + 1 * Math.cos((110 * Math.PI) / 180)
+  @property({ type: Number }) point30XFixed = 0 * Math.cos((30 * Math.PI) / 180) - 1 * Math.sin((30 * Math.PI) / 180)
+  @property({ type: Number }) point30YFixed = 0 * Math.sin((30 * Math.PI) / 180) + 1 * Math.cos((30 * Math.PI) / 180)
+  @property({ type: Number }) point110XFixed = 0 * Math.cos((110 * Math.PI) / 180) - 1 * Math.sin((110 * Math.PI) / 180)
+  @property({ type: Number }) point110YFixed = 0 * Math.sin((110 * Math.PI) / 180) + 1 * Math.cos((110 * Math.PI) / 180)
 
   static styles = [
     layoutStyles,
@@ -68,83 +59,69 @@ class SurroundPanner extends LitElement {
               @mousedown="${this.handleMouseDown}"
             ></div>
             <!-- Checkpoints -->
-            <div
-              class="panner__checkpoint"
-              style="top: ${(-this.pointYFixed + 1) * 150}px; left: ${(this.pointXFixed + 1) *
-              150}px"
-            >
+            <div class="panner__checkpoint" style="top: ${(-this.pointYFixed + 1) * 150}px; left: ${(this.pointXFixed + 1) * 150}px">
               <div
                 class="panner__checkpoint__speaker-volume"
-                style="color: rgba(${convertDistanceToColorR(
-                  this.centerDistance,
-                )},${convertDistanceToColorG(this.centerDistance)},${convertDistanceToColorB(
-                  this.centerDistance,
-                )}"
+                style="color: rgba(
+                ${convertDistanceToColorR(this.centerDistance)},
+                ${convertDistanceToColorG(this.centerDistance)},
+                ${convertDistanceToColorB(this.centerDistance)}"
               >
                 ${convertDistanceTodB(this.centerDistance).toFixed(2)} db
               </div>
             </div>
             <div
               class="panner__checkpoint panner__checkpoint__top-left"
-              style="top: ${(-this.point30YFixed + 1) * 150}px; left: ${(this.point30XFixed + 1) *
-              150}px"
+              style="top: ${(-this.point30YFixed + 1) * 150}px; left: ${(this.point30XFixed + 1) * 150}px"
             >
               <div
                 class="panner__checkpoint__speaker-volume"
-                style="color: rgba(${convertDistanceToColorR(
-                  this.frontLDistance,
-                )},${convertDistanceToColorG(this.frontLDistance)},${convertDistanceToColorB(
-                  this.frontLDistance,
-                )}"
+                style="color: rgba(
+                ${convertDistanceToColorR(this.frontLDistance)},
+                ${convertDistanceToColorG(this.frontLDistance)},
+                ${convertDistanceToColorB(this.frontLDistance)}"
               >
                 ${convertDistanceTodB(this.frontLDistance).toFixed(2)} db
               </div>
             </div>
             <div
               class="panner__checkpoint panner__checkpoint__top-right"
-              style="top: ${(-this.point30YFixed + 1) * 150}px; left: ${(-this.point30XFixed + 1) *
-              150}px"
+              style="top: ${(-this.point30YFixed + 1) * 150}px; left: ${(-this.point30XFixed + 1) * 150}px"
             >
               <div
                 class="panner__checkpoint__speaker-volume"
-                style="color: rgba(${convertDistanceToColorR(
-                  this.frontRDistance,
-                )},${convertDistanceToColorG(this.frontRDistance)},${convertDistanceToColorB(
-                  this.frontRDistance,
-                )}"
+                style="color: rgba(
+                  ${convertDistanceToColorR(this.frontRDistance)},
+                  ${convertDistanceToColorG(this.frontRDistance)},
+                  ${convertDistanceToColorB(this.frontRDistance)}"
               >
                 ${convertDistanceTodB(this.frontRDistance).toFixed(2)} db
               </div>
             </div>
             <div
               class="panner__checkpoint panner__checkpoint__bottom panner__checkpoint__bottom-left"
-              style="top: ${(-this.point110YFixed + 1) * 150}px; left: ${(this.point110XFixed + 1) *
-              150}px"
+              style="top: ${(-this.point110YFixed + 1) * 150}px; left: ${(this.point110XFixed + 1) * 150}px"
             >
               <div
                 class="panner__checkpoint__speaker-volume"
-                style="color: rgba(${convertDistanceToColorR(
-                  this.surroundLDistance,
-                )},${convertDistanceToColorG(this.surroundLDistance)},${convertDistanceToColorB(
-                  this.surroundLDistance,
-                )}"
+                style="color: rgba(
+                  ${convertDistanceToColorR(this.surroundLDistance)},
+                  ${convertDistanceToColorG(this.surroundLDistance)},
+                  ${convertDistanceToColorB(this.surroundLDistance)}"
               >
                 ${convertDistanceTodB(this.surroundLDistance).toFixed(2)} db
               </div>
             </div>
             <div
               class="panner__checkpoint panner__checkpoint__bottom panner__checkpoint__bottom-right"
-              style="top: ${(-this.point110YFixed + 1) * 150}px; left: ${(-this.point110XFixed +
-                1) *
-              150}px"
+              style="top: ${(-this.point110YFixed + 1) * 150}px; left: ${(-this.point110XFixed + 1) * 150}px"
             >
               <div
                 class="panner__checkpoint__speaker-volume"
-                style="color: rgba(${convertDistanceToColorR(
-                  this.surroundRDistance,
-                )},${convertDistanceToColorG(this.surroundRDistance)},${convertDistanceToColorB(
-                  this.surroundRDistance,
-                )}"
+                style="color: rgba(
+                ${convertDistanceToColorR(this.surroundRDistance)},
+                ${convertDistanceToColorG(this.surroundRDistance)},
+                ${convertDistanceToColorB(this.surroundRDistance)}"
               >
                 ${convertDistanceTodB(this.surroundRDistance).toFixed(2)} db
               </div>
@@ -183,18 +160,10 @@ class SurroundPanner extends LitElement {
       // Calculate the distances between the panner's new position and various fixed points on the screen.
       // Used to calculate speaker volumes.
       const centerDistance = Math.sqrt((x - this.pointXFixed) ** 2 + (y - this.pointYFixed) ** 2)
-      const frontLDistance = Math.sqrt(
-        (x - this.point30XFixed) ** 2 + (y - this.point30YFixed) ** 2,
-      )
-      const frontRDistance = Math.sqrt(
-        (-x - this.point30XFixed) ** 2 + (y - this.point30YFixed) ** 2,
-      )
-      const surroundLDistance = Math.sqrt(
-        (x - this.point110XFixed) ** 2 + (y - this.point110YFixed) ** 2,
-      )
-      const surroundRDistance = Math.sqrt(
-        (-x - this.point110XFixed) ** 2 + (y - this.point110YFixed) ** 2,
-      )
+      const frontLDistance = Math.sqrt((x - this.point30XFixed) ** 2 + (y - this.point30YFixed) ** 2)
+      const frontRDistance = Math.sqrt((-x - this.point30XFixed) ** 2 + (y - this.point30YFixed) ** 2)
+      const surroundLDistance = Math.sqrt((x - this.point110XFixed) ** 2 + (y - this.point110YFixed) ** 2)
+      const surroundRDistance = Math.sqrt((-x - this.point110XFixed) ** 2 + (y - this.point110YFixed) ** 2)
 
       // Only update values if between circular boundary
       if (borderCheck <= 1) {
