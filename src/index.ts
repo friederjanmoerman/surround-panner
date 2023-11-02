@@ -8,6 +8,10 @@ import { pannerStyles, layoutStyles } from './styles';
 // Theme
 import { primaryColor } from './theme';
 
+// Utils
+import { convertDistanceTodB, convertDistanceToColorR, convertDistanceToColorG, convertDistanceToColorB } from './utils';
+
+
 class SurroundPanner extends LitElement {
   @property({ type: Number }) pointX = 0;
   @property({ type: Number }) pointY = 0;
@@ -156,50 +160,7 @@ class SurroundPanner extends LitElement {
   }
 }
 
-function convertDistanceTodB(value: number): number {
-  const minValue = 0;
-  const maxValue = 2;
-  const dBMinValue = 0;
-  const dBMaxValue = 120;
 
-  const mappedValue = dBMinValue + (dBMaxValue - dBMinValue) * (1 - (value - minValue) / (maxValue - minValue));
-
-  return mappedValue;
-}
-
-// Color transitions calculations
-function convertDistanceToColorR(value: number): number {
-  const minValue = 0;
-  const maxValue = 2;
-  const dBMinValue = 179;
-  const dBMaxValue = 255;
-
-  const mappedValue = dBMinValue + (value - minValue) * (dBMaxValue - dBMinValue) / (maxValue - minValue);
-
-  return mappedValue;
-}
-
-function convertDistanceToColorG(value: number): number {
-  const minValue = 0;
-  const maxValue = 2;
-  const dBMinValue = 25;
-  const dBMaxValue = 255;
-
-  const mappedValue = dBMinValue + (value - minValue) * (dBMaxValue - dBMinValue) / (maxValue - minValue);
-
-  return mappedValue;
-}
-
-function convertDistanceToColorB(value: number): number {
-  const minValue = 0;
-  const maxValue = 2;
-  const dBMinValue = 146;
-  const dBMaxValue = 255;
-
-  const mappedValue = dBMinValue + (value - minValue) * (dBMaxValue - dBMinValue) / (maxValue - minValue);
-
-  return mappedValue;
-}
 
 
 customElements.define('surround-panner', SurroundPanner);
