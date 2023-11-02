@@ -1,6 +1,6 @@
 // Lit
 import { LitElement, html, css } from 'lit';
-import { property } from 'lit/decorators';
+import { property } from 'lit-element/decorators';
 
 // Styles
 import { pannerStyles, layoutStyles } from './styles';
@@ -60,7 +60,7 @@ class SurroundPanner extends LitElement {
                 style="top: ${(-this.pointYFixed + 1) * 150}px; left: ${(this.pointXFixed + 1) * 150}px"
               >
                 <div class="panner__checkpoint__speaker-volume" style="color: rgba(${convertDistanceToColorR(this.centerDistance)},${convertDistanceToColorG(this.centerDistance)},${convertDistanceToColorB(this.centerDistance)}">
-                  ${convertDistanceTodB(this.centerDistance).toFixed(2)} db
+                ${convertDistanceTodB(this.centerDistance).toFixed(2)} db
                 </div>
               </div>
               <div
@@ -167,7 +167,6 @@ function convertDistanceTodB(value: number): number {
   return mappedValue;
 }
 
-
 // Color transitions calculations
 function convertDistanceToColorR(value: number): number {
   const minValue = 0;
@@ -201,5 +200,6 @@ function convertDistanceToColorB(value: number): number {
 
   return mappedValue;
 }
+
 
 customElements.define('surround-panner', SurroundPanner);
